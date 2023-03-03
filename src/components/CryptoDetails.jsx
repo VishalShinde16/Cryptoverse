@@ -14,26 +14,38 @@ import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import CachedIcon from '@mui/icons-material/Cached';
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined';
+//#1a90ff
 
-
-const Container = styled.div``
-
-const HeaderContainer = styled.div`
-
+const Container = styled.div`
+  padding: 20px;
 `
 
-const Title = styled.h1``
+const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+`
+
+const Title = styled.h1`
+  color: #1a90ff;
+`
 
 const Timespan = styled.select`
-
+  width: 15%;
+  padding: 5px 10px;
+  border: 1px solid lightgray;
+  margin: 10px 20px;
 `
 const StatsContainer = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin: 0 20px;
 `
 const Statistics = styled.div`
   display: flex;
   flex-direction: column;
+
 `
 
 const Heading = styled.h2`
@@ -41,6 +53,7 @@ const Heading = styled.h2`
 `
 const Subheading = styled.p`
   color: darkgray;
+  margin-bottom: 20px;
 `
 
 const Row = styled.div`
@@ -48,6 +61,10 @@ const Row = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: white;
+  border-bottom: 1px solid lightgray;
+  padding: 10px;
+  width: 100%;
+
 `
 
 const Info = styled.div`
@@ -59,12 +76,15 @@ const Symbol = styled.div`
   margin: 5px 10px;
   color:gray;
 `
-const Infoname = styled.h3`
+const Infoname = styled.h4`
   font-weight: 300;
 `
 const Infovalue = styled.h3``
 
-const LinkContainer = styled.div``
+const LinkContainer = styled.div`
+  padding: 20px;
+  margin-top: 20px;
+`
 
 const CryptoDetails = () => {
 
@@ -216,34 +236,6 @@ const CryptoDetails = () => {
     setTimePeriod(event.target.value)
   }
 
-  // React.useEffect(()=>{
-    
-  //   const options = {
-  //     method: 'GET',
-  //     url: `https://coinranking1.p.rapidapi.com/coin/${currencyId}/history`,
-  //     params: {referenceCurrencyUuid: 'yhjMzLPhuIDl', timePeriod: '24h'},
-  //     headers: {
-  //       'X-RapidAPI-Key': '7aa40aa768msh6cd0a7f3f842e23p1023dbjsn2679d5540980',
-  //       'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com'
-  //     }
-  //   };
-
-  //   const getCoinHistory = async()=>{
-
-  //     try{
-  //       const coinHistory = await axios.request(options)
-
-  //       setCurrencyHistory(coinHistory.data.history)
-  //       console.log('hey')
-
-  //     }catch(err){
-  //       console.log(err)
-  //     }
-  //   }
-  //   currencyId ? 
-  //   getCoinHistory(): console.log('NO currency id for coin history')
-
-  // },[currencyId])
 
   return (
     <Container>
@@ -255,7 +247,7 @@ const CryptoDetails = () => {
             <Title>{currencyData.name} {currencyData.symbol}  Price</Title>
             <p>{currencyData.name} live price in US dollars. View value statistics,market cap and supply</p>
           </HeaderContainer>
-
+          
           <Timespan defaultValue='24h' onChange={handleTimePeriod}>
             <option value='3h'>3h</option>
             <option value='12h'>12h</option>
@@ -269,14 +261,15 @@ const CryptoDetails = () => {
           </Timespan>
 
           {/* chart */}
+          <Heading style={{margin:'5 20px'}}>{currencyData.name} Price Chart</Heading>
           {Object.keys(currencyHistory).length > 0 ? <CryptoChart data = {currencyHistory}/>:<p> no currency history as data length is {Object.keys(currencyHistory).length} </p>}
       
           {/* price to usd,rank,24hvol,marketcap,alltimehigh */}
           <StatsContainer>
 
             <Statistics>
-              <Heading>Bitcoin Value statistics</Heading>
-              <Subheading>An overview showing the stats of Bitcoin</Subheading>
+              <Heading>{currencyData.name} Value statistics</Heading>
+              <Subheading>An overview showing the stats of {currencyData.name}</Subheading>
 
               {console.log(currencyStats)}
               {console.log(currencyStats.length)}
@@ -323,13 +316,13 @@ const CryptoDetails = () => {
           {/* information of coin */}
           {/* links */}
           <LinkContainer>
-            <Heading>Bitcoin Links</Heading>
+            <Heading style={{margin:'20px 0 10px 0'}}>Bitcoin Links</Heading>
             {
               links.length > 0 ?
                 links.map(({ name, type, url }) => {
                   return (
 
-                    <Row key={url}>
+                    <Row key={url} style={{padding:'20px'}}>
                       <Infoname>{type}</Infoname>
                       <a href={url}>{name}</a>
                     </Row>

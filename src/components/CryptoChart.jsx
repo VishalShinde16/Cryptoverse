@@ -15,11 +15,13 @@ import {
 ChartJS.register(LineElement,CategoryScale,LinearScale,PointElement,Legend,Tooltip)
 
 const Container = styled.div`
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 const Wrapper = styled.div`
-    width: 850px;
-    height:600px;
+    width: 90%;
+    height:530px;
 `
 
 const CryptoChart = ({data}) => {
@@ -38,12 +40,12 @@ const CryptoChart = ({data}) => {
         labels:timestamp,
         datasets:[
             {
-                label:'price of crytpo',
+                label:'Price of Currency',
                 data:coinHistory,
 
-                backgroundColor:'aqua',
-                borderColor:'black',
-                pointBorderColor:'aqua',
+                backgroundColor:'#1a90ff',
+                borderColor:'#1a90ff',
+                pointBorderColor:'#1a90ff',
                 fill:true,
                 tension:0.4
             }
@@ -60,7 +62,6 @@ const CryptoChart = ({data}) => {
 
     return (
         <Container>
-            <div>CryptoChart</div>
             <Wrapper>
                 <Line data = {linedata} />
             </Wrapper>

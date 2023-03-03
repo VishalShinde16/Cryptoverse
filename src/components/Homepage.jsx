@@ -107,7 +107,7 @@ const Homepage = () => {
           <SectionTitle>Top 10 Cryptocurrencies in the world</SectionTitle>
           <Link to='/cryptocurrencies' style={{textDecoration:'none'}}><ShowMore>Show More</ShowMore></Link>
         </SectionHeader>
-        <Cryptocurrencies count={10}/>
+        {/* <Cryptocurrencies count={10}/> */}
       </Section>
 
       <Section>
@@ -115,7 +115,7 @@ const Homepage = () => {
           <SectionTitle>Latest Crypto News</SectionTitle>
           <Link to='/news' style={{textDecoration:'none'}}><ShowMore>Show More</ShowMore></Link>
         </SectionHeader>
-        <News/>
+        {/* <News count={12}/> */}
       </Section>
     </Container>
   )
